@@ -4,10 +4,7 @@ $bot_id = isset($_GET['bot_id']) ? intval($_GET['bot_id']) : 0;
 if (!$bot_id) {
     die('No bot_id provided.');
 }
-$conn = new mysqli('localhost', 'root', '', 'mira_chatbot');
-if ($conn->connect_error) {
-    die('Database connection failed');
-}
+include_once 'db_connect.php';
 $stmt = $conn->prepare('SELECT name, logo, primary_color, secondary_color FROM bots WHERE id = ?');
 $stmt->bind_param('i', $bot_id);
 $stmt->execute();

@@ -8,15 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
-$host = 'localhost';
-$db = 'mira_chatbot';
-$user = 'root';
-$pass = '';
-$conn = new mysqli($host, $user, $pass, $db);
-if ($conn->connect_error) {
-    echo json_encode(['success' => false, 'message' => 'DB connection failed']);
-    exit;
-}
+include_once 'db_connect.php';
 
 $name = trim($_POST['name'] ?? '');
 $email = trim($_POST['email'] ?? '');
