@@ -189,6 +189,9 @@ $bots = $stmt->get_result();
                     <a class="open-link" href="http://127.0.0.1:5001?bot_id=<?php echo $bot['id']; ?>" target="_blank">Test Bot</a>
                     <br>
                     <a class="open-link" href="edit_bot.php?bot_id=<?php echo $bot['id']; ?>" style="color:#fff;background:#1565c0;padding:0.4rem 1.2rem;border-radius:5px;display:inline-block;margin-top:0.7rem;margin-bottom:0.7rem;">Edit</a>
+                    <a class="open-link" href="see_queries.php?bot_id=<?php echo $bot['id']; ?>" style="color:#fff;background:#1cae4e;padding:0.4rem 1.2rem;border-radius:5px;display:inline-block;margin-top:0.7rem;margin-bottom:0.7rem;">See Queries</a>
+                    <button type="button" class="embed-btn" data-bot-id="<?php echo $bot['id']; ?>" style="background:#ffb300;color:#fff;padding:0.4rem 1.2rem;border:none;border-radius:5px;display:inline-block;margin-top:0.7rem;margin-bottom:0.7rem;cursor:pointer;">Embed</button>
+                    <span class="embed-copied-msg" style="display:none;color:#388e3c;font-size:0.95rem;margin-left:8px;">Copied!</span>
                     <form method="post" action="delete_bot.php" style="margin-top:0.5rem;">
                         <input type="hidden" name="bot_id" value="<?php echo $bot['id']; ?>">
                         <button type="submit" class="delete-btn" onclick="return confirm('Are you sure you want to delete this bot?');">Delete</button>
@@ -201,4 +204,24 @@ $bots = $stmt->get_result();
         </div>
     </div>
 </body>
+<script>
+// Embed button clipboard logic
+function getEmbedCode(botId) {
+    // You can customize this embed code as needed
+    return `hi`;
+}
+document.querySelectorAll('.embed-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        var botId = btn.getAttribute('data-bot-id');
+        var embedCode = getEmbedCode(botId);
+        // Copy to clipboard
+        navigator.clipboard.writeText(embedCode).then(function() {
+            // Show copied message
+            var msg = btn.nextElementSibling;
+            msg.style.display = 'inline';
+            setTimeout(function() { msg.style.display = 'none'; }, 1200);
+        });
+    });
+});
+</script>
 </html> 

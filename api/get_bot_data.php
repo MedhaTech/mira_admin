@@ -23,12 +23,13 @@ if ($conn->connect_error) {
     echo json_encode(['error' => 'DB connection failed']);
     exit;
 }
-$stmt = $conn->prepare('SELECT name, logo, primary_color, secondary_color, knowledge_base FROM bots WHERE id = ?');
+$stmt = $conn->prepare('SELECT id, name, logo, primary_color, secondary_color, knowledge_base FROM bots WHERE id = ?');
 $stmt->bind_param('i', $bot_id);
 $stmt->execute();
 $result = $stmt->get_result();
 $bot = $result->fetch_assoc();
 if ($bot) {
+    $bot['bot_id'] = $bot['id'];
     echo json_encode($bot);
 } else {
     echo json_encode(['error' => 'Bot not found']);
