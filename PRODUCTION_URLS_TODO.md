@@ -7,16 +7,13 @@ Update the following locations before deploying to production:
 ## 1. Database Host (MySQL)
 Replace `'localhost'` with your production database host if needed.
 
-- [ ] **edit_bot.php** (line 9): `$host = 'localhost';`
-- [ ] **delete_bot.php** (line 9): `$host = 'localhost';`
-- [ ] **login_process.php** (line 3): `$host = 'localhost';`
-- [ ] **api/get_bot_data.php** (line 20): `'localhost'` in `new mysqli`
-- [ ] **see_queries.php** (line 7): `$host = 'localhost';`
-- [ ] **submit_query.php** (line 10): `$host = 'localhost';`
-- [ ] **signup_process.php** (line 3): `$host = 'localhost';`
-- [ ] **bot.php** (line 6): `'localhost'` in `new mysqli`
-- [ ] **dashboard.php** (line 9): `$host = 'localhost';`
-- [ ] **create_bot.php** (line 9): `$host = 'localhost';`
+- [ ] **db_connect.php**: Update the following variables:
+  - `$host = 'localhost';`
+  - `$db = 'mira_chatbot';`
+  - `$user = 'root';`
+  - `$pass = '';`
+
+> All PHP scripts now use `db_connect.php` for database connection. You only need to update credentials in this file.
 
 ---
 

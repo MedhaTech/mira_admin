@@ -6,15 +6,7 @@ if (!isset($_SESSION['user'])) {
 }
 $username = htmlspecialchars($_SESSION['user']);
 
-// MySQL connection settings
-$host = 'localhost';
-$db = 'mira_chatbot';
-$user = 'root';
-$pass = '';
-$conn = new mysqli($host, $user, $pass, $db);
-if ($conn->connect_error) {
-    die('Database connection failed: ' . $conn->connect_error);
-}
+include_once 'db_connect.php';
 // Get user ID
 $stmt = $conn->prepare('SELECT id FROM users WHERE username = ?');
 $stmt->bind_param('s', $username);

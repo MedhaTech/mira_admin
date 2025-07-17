@@ -5,14 +5,7 @@ if (!isset($_SESSION['user'])) {
     exit();
 }
 $username = htmlspecialchars($_SESSION['user']);
-$host = 'localhost';
-$db = 'mira_chatbot';
-$user = 'root';
-$pass = '';
-$conn = new mysqli($host, $user, $pass, $db);
-if ($conn->connect_error) {
-    die('Database connection failed: ' . $conn->connect_error);
-}
+include_once 'db_connect.php';
 $bot_id = isset($_GET['bot_id']) ? intval($_GET['bot_id']) : 0;
 if (!$bot_id) {
     die('No bot_id provided.');

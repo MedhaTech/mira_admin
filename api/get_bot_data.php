@@ -18,11 +18,7 @@ if (!$bot_id) {
     exit;
 }
 
-$conn = new mysqli('localhost', 'root', '', 'mira_chatbot');
-if ($conn->connect_error) {
-    echo json_encode(['error' => 'DB connection failed']);
-    exit;
-}
+include_once __DIR__ . '/../db_connect.php';
 $stmt = $conn->prepare('SELECT id, name, logo, primary_color, secondary_color, knowledge_base FROM bots WHERE id = ?');
 $stmt->bind_param('i', $bot_id);
 $stmt->execute();

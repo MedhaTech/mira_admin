@@ -1,14 +1,6 @@
 <?php
 session_start();
-// MySQL connection settings
-$host = 'localhost';
-$db = 'mira_chatbot';
-$user = 'root'; // Change if not default
-$pass = '';
-$conn = new mysqli($host, $user, $pass, $db);
-if ($conn->connect_error) {
-    die('Database connection failed: ' . $conn->connect_error);
-}
+include_once 'db_connect.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username'] ?? '');
     $password = trim($_POST['password'] ?? '');
