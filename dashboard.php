@@ -200,7 +200,7 @@ $bots = $stmt->get_result();
 // Embed button clipboard logic
 function getEmbedCode(botId, logo, primaryColor, secondaryColor) {
     var loc = window.location;
-    var flaskUrl = loc.protocol + '//' + loc.hostname + ':5001';
+    var flaskUrl = "http://15.206.160.248:5001/";
     // Escape logo URL for JS string
     logo = logo.replace(/'/g, "\\'");
     primaryColor = primaryColor || '#F72534';
