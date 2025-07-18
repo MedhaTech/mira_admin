@@ -178,7 +178,7 @@ $bots = $stmt->get_result();
                         <span style="background:<?php echo htmlspecialchars($bot['primary_color']); ?>;"></span>
                         <span style="background:<?php echo htmlspecialchars($bot['secondary_color']); ?>;"></span>
                     </div>
-                    <a class="open-link" href="https://bubbysky.pythonanywhere.com?bot_id=<?php echo $bot['id']; ?>" target="_blank">Test Bot</a>
+                    <a class="open-link" href="http://15.206.160.248:5001?bot_id=<?php echo $bot['id']; ?>" target="_blank">Test Bot</a>
                     <br>
                     <a class="open-link" href="edit_bot.php?bot_id=<?php echo $bot['id']; ?>" style="color:#fff;background:#1565c0;padding:0.4rem 1.2rem;border-radius:5px;display:inline-block;margin-top:0.7rem;margin-bottom:0.7rem;">Edit</a>
                     <a class="open-link" href="see_queries.php?bot_id=<?php echo $bot['id']; ?>" style="color:#fff;background:#1cae4e;padding:0.4rem 1.2rem;border-radius:5px;display:inline-block;margin-top:0.7rem;margin-bottom:0.7rem;">See Queries</a>
