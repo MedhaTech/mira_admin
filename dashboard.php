@@ -198,14 +198,23 @@ $bots = $stmt->get_result();
 </body>
 <script>
 // Embed button clipboard logic
-function getEmbedCode(botId) {
-    // You can customize this embed code as needed
-    return `hi`;
+function getEmbedCode(botId, logo, primaryColor, secondaryColor) {
+    var loc = window.location;
+    var flaskUrl = loc.protocol + '//' + loc.hostname + ':5001';
+    // Escape logo URL for JS string
+    logo = logo.replace(/'/g, "\\'");
+    primaryColor = primaryColor || '#F72534';
+    secondaryColor = secondaryColor || '#ff4a5a';
+    return `<script>\n(function () {\n    if (window.BubbyWidgetLoaded) return;\n    window.BubbyWidgetLoaded = true;\n    var FLASK_URL = '` + flaskUrl + `';\n    var BOT_ID = '` + botId + `';\n    var BOT_LOGO = '` + logo + `';\n    var PRIMARY_COLOR = '` + primaryColor + `';\n    var SECONDARY_COLOR = '` + secondaryColor + `';\n    var fab = document.createElement('div');\n    fab.style.position = 'fixed';\n    fab.style.bottom = '32px';\n    fab.style.right = '32px';\n    fab.style.width = '64px';\n    fab.style.height = '60px';\n    fab.style.background = PRIMARY_COLOR;\n    fab.style.borderRadius = '50%';\n    fab.style.boxShadow = '0 4px 16px rgba(0,0,0,0.18)';\n    fab.style.display = 'flex';\n    fab.style.alignItems = 'center';\n    fab.style.justifyContent = 'center';\n    fab.style.cursor = 'pointer';\n    fab.style.zIndex = '99999';\n    fab.title = 'Chat with Mira';\n    var img = document.createElement('img');\n    img.src = BOT_LOGO || 'https://cdn-icons-png.flaticon.com/512/4712/4712035.png';\n    img.style.width = '36px';\n    img.style.height = '36px';\n    img.alt = 'Chat with Mira';\n    fab.appendChild(img);\n    var iframe = document.createElement('iframe');\n    iframe.src = FLASK_URL + '/?bot_id=' + encodeURIComponent(BOT_ID) + '&logo=' + encodeURIComponent(BOT_LOGO) + '&primary_color=' + encodeURIComponent(PRIMARY_COLOR) + '&secondary_color=' + encodeURIComponent(SECONDARY_COLOR);\n    iframe.style.position = 'fixed';\n    iframe.style.bottom = '32px';\n    iframe.style.right = '32px';\n    iframe.style.width = '370px';\n    iframe.style.borderRadius = '18px';\n    iframe.style.boxShadow = '0 8px 32px rgba(247,37,52,0.18)';\n    iframe.style.zIndex = '100000';\n    iframe.style.display = 'none';\n    iframe.allowTransparency = 'true';\n    iframe.style.height = '570px';\n    iframe.style.border = 'none';\n    iframe.style.margin = '0';\n    iframe.style.padding = '10';\n    fab.onclick = function (e) {\n        e.stopPropagation();\n        iframe.style.display = (iframe.style.display === 'none') ? 'block' : 'none';\n        fab.style.display = (iframe.style.display === 'block') ? 'none' : 'flex';\n    };\n    document.addEventListener('click', function (e) {\n        if (iframe.style.display === 'block' && !iframe.contains(e.target) && !fab.contains(e.target)) {\n            iframe.style.display = 'none';\n            fab.style.display = 'flex';\n        }\n    });\n    window.addEventListener('message', function (event) {\n        if (event.data && event.data.type === 'bubby-close') {\n            iframe.style.display = 'none';\n            fab.style.display = 'flex';\n        }\n    });\n    document.body.appendChild(fab);\n    document.body.appendChild(iframe);\n})();\n<\/script>`;
 }
 document.querySelectorAll('.embed-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
         var botId = btn.getAttribute('data-bot-id');
-        var embedCode = getEmbedCode(botId);
+        var botRow = btn.closest('.bot-card');
+        var logo = botRow.querySelector('img').src;
+        var primaryColor = botRow.querySelector('.color-swatches span:first-child').style.background;
+        var secondaryColor = botRow.querySelector('.color-swatches span:last-child').style.background;
+        var embedCode = getEmbedCode(botId, logo, primaryColor, secondaryColor);
         // Copy to clipboard
         navigator.clipboard.writeText(embedCode).then(function() {
             // Show copied message
