@@ -162,6 +162,7 @@ $bots = $stmt->get_result();
     <div class="sidenav">
         <a href="dashboard.php">Dashboard</a>
         <a href="create_bot.php">Create New Bot</a>
+        <a href="reports.php">Reports</a>
         <form method="post" action="logout.php" style="margin:0;">
             <button type="submit">Logout</button>
         </form>

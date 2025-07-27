@@ -35,3 +35,29 @@ CREATE TABLE IF NOT EXISTS support_queries (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (bot_id) REFERENCES bots(id) ON DELETE CASCADE
 );
+
+-- Conversations table (replaces chat_logs)
+CREATE TABLE IF NOT EXISTS conversations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    bot_id INT NOT NULL,
+    session_id VARCHAR(255) NOT NULL, -- Unique session identifier
+    total_messages INT DEFAULT 0,
+    first_message_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_message_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    conversation_summary TEXT, -- Summary of the conversation
+    FOREIGN KEY (bot_id) REFERENCES bots(id) ON DELETE CASCADE,
+    INDEX idx_session (session_id),
+    INDEX idx_bot_session (bot_id, session_id)
+);
+
+-- Individual messages within conversations
+CREATE TABLE IF NOT EXISTS conversation_messages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    conversation_id INT NOT NULL,
+    message_type ENUM('user', 'bot') NOT NULL,
+    message_text TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (conversation_id) REFERENCES conversations(id) ON DELETE CASCADE,
+    INDEX idx_conversation (conversation_id),
+    INDEX idx_created_at (created_at)
+);

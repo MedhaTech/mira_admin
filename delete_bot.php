@@ -28,6 +28,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['bot_id'])) {
         if (!empty($bot['logo']) && file_exists(__DIR__ . '/' . $bot['logo'])) {
             unlink(__DIR__ . '/' . $bot['logo']);
         }
+        // Explicitly delete related chat logs and support queries (in case FK is not enforced)
+        $stmt = $conn->prepare('DELETE FROM conversation_messages WHERE conversation_id IN (SELECT id FROM conversations WHERE bot_id = ?)');
+        $stmt->bind_param('i', $bot_id);
+        $stmt->execute();
+        $stmt = $conn->prepare('DELETE FROM conversations WHERE bot_id = ?');
+        $stmt->bind_param('i', $bot_id);
+        $stmt->execute();
+        $stmt = $conn->prepare('DELETE FROM support_queries WHERE bot_id = ?');
+        $stmt->bind_param('i', $bot_id);
+        $stmt->execute();
         // Delete bot from DB
         $stmt = $conn->prepare('DELETE FROM bots WHERE id = ? AND user_id = ?');
         $stmt->bind_param('ii', $bot_id, $user_id);
