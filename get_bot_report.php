@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 include_once 'db_connect.php';
+include_once 'gemini_api.php';
 
 $bot_id = isset($_GET['bot_id']) ? intval($_GET['bot_id']) : 0;
 if (!$bot_id) {
@@ -16,81 +17,19 @@ if (!$bot_id) {
     exit;
 }
 
-// Function to categorize and group similar questions
-function categorizeQuestions($userMessages) {
-    $categories = [
-        'greetings' => ['hi', 'hello', 'hey', 'good morning', 'good afternoon', 'good evening'],
-        'identity' => ['who are you', 'what are you', 'tell me about yourself', 'your name'],
-        'company_info' => ['medha tech', 'medha', 'company', 'about company', 'what is medha'],
-        'services' => ['services', 'what do you do', 'offer', 'provide', 'help'],
-        'contact' => ['contact', 'phone', 'email', 'address', 'location', 'reach'],
-        'pricing' => ['price', 'cost', 'fee', 'charge', 'how much'],
-        'support' => ['help', 'support', 'assist', 'problem', 'issue']
-    ];
-       
-    $category_counts = [];
-    $uncategorized = [];
-    
-    foreach ($userMessages as $msg) {
-        $msg_lower = strtolower(trim($msg));
-        $categorized = false;
-        
-        foreach ($categories as $category => $keywords) {
-            foreach ($keywords as $keyword) {
-                if (strpos($msg_lower, $keyword) !== false) {
-                    $category_counts[$category] = ($category_counts[$category] ?? 0) + 1;
-                    $categorized = true;
-                    break 2;
-                }
-            }
-        }
-        
-        if (!$categorized && !empty($msg_lower)) {
-            $uncategorized[] = $msg;
+// Get bot name for better analysis
+$bot_name = null;
+$stmt = $conn->prepare('SELECT name FROM bots WHERE id = ?');
+if ($stmt) {
+    $stmt->bind_param('i', $bot_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result) {
+        $row = $result->fetch_assoc();
+        if ($row) {
+            $bot_name = $row['name'];
         }
     }
-    
-    // Create meaningful question labels
-    $question_labels = [
-        'greetings' => 'Greetings/Hello',
-        'identity' => 'Who are you?',
-        'company_info' => 'What is Medha Tech?',
-        'services' => 'What services do you offer?',
-        'contact' => 'How can I contact you?',
-        'pricing' => 'What are your prices?',
-        'support' => 'Can you help me?'
-    ];
-    
-    $questions = [];
-    
-    // Add categorized questions
-    foreach ($category_counts as $category => $count) {
-        if (isset($question_labels[$category])) {
-            $questions[] = [
-                'question' => $question_labels[$category],
-                'count' => $count
-            ];
-        }
-    }
-    
-    // Add some uncategorized questions (limit to 2)
-    $uncategorized_counts = array_count_values($uncategorized);
-    arsort($uncategorized_counts);
-    $top_uncategorized = array_slice($uncategorized_counts, 0, 2, true);
-    
-    foreach ($top_uncategorized as $question => $count) {
-        $questions[] = [
-            'question' => $question,
-            'count' => $count
-        ];
-    }
-    
-    // Sort by count and return top 5
-    usort($questions, function($a, $b) {
-        return $b['count'] - $a['count'];
-    });
-    
-    return array_slice($questions, 0, 5);
 }
 
 try {
@@ -214,8 +153,14 @@ try {
                     $user_messages[] = $row['message_text'];
                 }
                 
-                // Use the categorization function
-                $top_questions = categorizeQuestions($user_messages);
+                // Use the generalized analysis function with bot name
+                if (!empty($user_messages)) {
+                    try {
+                        $top_questions = analyzeUserQuestions($user_messages, $bot_name);
+                    } catch (Exception $e) {
+                        $top_questions = simpleFallbackAnalysis($user_messages, $bot_name);
+                    }
+                }
             }
         }
     }

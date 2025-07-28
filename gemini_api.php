@@ -47,19 +47,22 @@ function callGeminiAPI($prompt) {
     return ['success' => true, 'text' => $data['candidates'][0]['content']['parts'][0]['text']];
 }
 
-function analyzeUserQuestions($userMessages) {
+function analyzeUserQuestions($userMessages, $botName = null) {
     if (empty($userMessages)) {
         return [];
     }
     
-    // Create a better prompt for Gemini to analyze the questions
+    // Create a generalized prompt for Gemini to analyze the questions
     $prompt = "Analyze the following user messages from a chatbot conversation and identify the top 5 most frequently asked questions or topics. 
 
 IMPORTANT: Create natural, meaningful questions that users would actually ask. For example:
 - If users ask 'hi', 'hello', 'who are you' → group as 'Who are you?' 
-- If users ask about a company name → 'What is [Company Name]?'
+- If users ask about a company/business name → 'What is [Company/Business Name]?'
 - If users ask about services → 'What services do you offer?'
 - If users ask about contact info → 'How can I contact you?'
+- If users ask about pricing → 'What are your prices?'
+- If users ask about hours → 'What are your business hours?'
+- If users ask about location → 'Where are you located?'
 
 User messages to analyze:
 ";
@@ -71,15 +74,15 @@ User messages to analyze:
     $prompt .= "\nPlease return ONLY a valid JSON array with 'question' and 'count' fields. Group similar questions together and count how many times each type of question was asked.
 
 Example format:
-[{\"question\": \"Who are you?\", \"count\": 15}, {\"question\": \"What is Medha Tech?\", \"count\": 8}, {\"question\": \"How can I contact you?\", \"count\": 5}]
+[{\"question\": \"Who are you?\", \"count\": 15}, {\"question\": \"What services do you offer?\", \"count\": 8}, {\"question\": \"How can I contact you?\", \"count\": 5}]
 
 Return only the JSON array, nothing else.";
     
     $result = callGeminiAPI($prompt);
     
     if (isset($result['error'])) {
-        // Fallback: simple analysis
-        return simpleFallbackAnalysis($userMessages);
+        // Fallback: generalized analysis
+        return simpleFallbackAnalysis($userMessages, $botName);
     }
     
     // Try to parse the JSON response
@@ -95,31 +98,88 @@ Return only the JSON array, nothing else.";
     }
     
     // Fallback if JSON parsing fails
-    return simpleFallbackAnalysis($userMessages);
+    return simpleFallbackAnalysis($userMessages, $botName);
 }
 
-function simpleFallbackAnalysis($userMessages) {
-    $question_counts = [];
+function simpleFallbackAnalysis($userMessages, $botName = null) {
+    // Generalized categories that work for any business
+    $categories = [
+        'greetings' => ['hi', 'hello', 'hey', 'good morning', 'good afternoon', 'good evening'],
+        'identity' => ['who are you', 'what are you', 'tell me about yourself', 'your name'],
+        'company_info' => ['company', 'business', 'about', 'what is', 'tell me about'],
+        'services' => ['services', 'what do you do', 'offer', 'provide', 'help', 'do you'],
+        'contact' => ['contact', 'phone', 'email', 'address', 'location', 'reach', 'call'],
+        'pricing' => ['price', 'cost', 'fee', 'charge', 'how much', 'rate'],
+        'hours' => ['hours', 'open', 'close', 'time', 'when'],
+        'location' => ['where', 'location', 'address', 'place'],
+        'support' => ['help', 'support', 'assist', 'problem', 'issue', 'trouble']
+    ];
+    
+    $category_counts = [];
+    $uncategorized = [];
     
     foreach ($userMessages as $msg) {
-        $msg = trim($msg);
-        if (!empty($msg)) {
-            $question_counts[$msg] = ($question_counts[$msg] ?? 0) + 1;
+        $msg_lower = strtolower(trim($msg));
+        $categorized = false;
+        
+        foreach ($categories as $category => $keywords) {
+            foreach ($keywords as $keyword) {
+                if (strpos($msg_lower, $keyword) !== false) {
+                    $category_counts[$category] = ($category_counts[$category] ?? 0) + 1;
+                    $categorized = true;
+                    break 2;
+                }
+            }
+        }
+        
+        if (!$categorized && !empty($msg_lower)) {
+            $uncategorized[] = $msg;
         }
     }
     
-    arsort($question_counts);
-    $top_questions = array_slice($question_counts, 0, 5, true);
+    // Create meaningful question labels
+    $question_labels = [
+        'greetings' => 'Greetings/Hello',
+        'identity' => 'Who are you?',
+        'company_info' => $botName ? "What is $botName?" : 'What is this business?',
+        'services' => 'What services do you offer?',
+        'contact' => 'How can I contact you?',
+        'pricing' => 'What are your prices?',
+        'hours' => 'What are your business hours?',
+        'location' => 'Where are you located?',
+        'support' => 'Can you help me?'
+    ];
     
     $questions = [];
-    foreach ($top_questions as $question => $count) {
+    
+    // Add categorized questions
+    foreach ($category_counts as $category => $count) {
+        if (isset($question_labels[$category])) {
+            $questions[] = [
+                'question' => $question_labels[$category],
+                'count' => $count
+            ];
+        }
+    }
+    
+    // Add some uncategorized questions (limit to 2)
+    $uncategorized_counts = array_count_values($uncategorized);
+    arsort($uncategorized_counts);
+    $top_uncategorized = array_slice($uncategorized_counts, 0, 2, true);
+    
+    foreach ($top_uncategorized as $question => $count) {
         $questions[] = [
             'question' => $question,
             'count' => $count
         ];
     }
     
-    return $questions;
+    // Sort by count and return top 5
+    usort($questions, function($a, $b) {
+        return $b['count'] - $a['count'];
+    });
+    
+    return array_slice($questions, 0, 5);
 }
 
 // Handle API requests
@@ -128,7 +188,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if (isset($input['action']) && $input['action'] === 'analyze_questions') {
         $userMessages = $input['messages'] ?? [];
-        $result = analyzeUserQuestions($userMessages);
+        $botName = $input['bot_name'] ?? null;
+        $result = analyzeUserQuestions($userMessages, $botName);
         echo json_encode(['success' => true, 'questions' => $result]);
     } else {
         echo json_encode(['error' => 'Invalid action']);
