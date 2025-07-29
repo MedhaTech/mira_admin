@@ -55,13 +55,13 @@ function analyzeUserQuestions($userMessages) {
     // Create a better prompt for Gemini to analyze the questions
     $prompt = "Analyze the following user messages from a chatbot conversation and identify the top 5 most frequently asked questions or topics. 
 
-IMPORTANT: Create natural, meaningful questions that users would actually ask. For example:
-- If users ask 'hi', 'hello', 'who are you' → group as 'Who are you?' 
-- If users ask about a company name → 'What is [Company Name]?'
-- If users ask about services → 'What services do you offer?'
-- If users ask about contact info → 'How can I contact you?'
+    IMPORTANT: Create natural, meaningful questions that users would actually ask. For example:
+    - If users ask 'hi', 'hello', 'who are you' → group as 'Who are you?' 
+    - If users ask about a company name → 'What is [Company Name]?'
+    - If users ask about services → 'What services do you offer?'
+    - If users ask about contact info → 'How can I contact you?'
 
-User messages to analyze:
+    User messages to analyze:
 ";
     
     foreach ($userMessages as $msg) {

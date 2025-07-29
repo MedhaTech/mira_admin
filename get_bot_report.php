@@ -98,6 +98,8 @@ try {
     $conv_stats = [
         'total_conversations' => 0,
         'total_conversations_today' => 0,
+        'time_series_data' => [], // For time graph
+        'today_time_series_data' => [], // For today's time graph
         'avg_messages_per_conversation' => 0,
         'longest_conversation' => 0,
         'last_conversation' => null,
@@ -216,6 +218,61 @@ try {
                 
                 // Use the categorization function
                 $top_questions = categorizeQuestions($user_messages);
+                
+                // Get time series data for overall conversations (last 7 days)
+                $trend_range = isset($_GET['trend_range']) ? $_GET['trend_range'] : '7';
+                if ($trend_range === 'overall') {
+                    $interval_sql = '';
+                } else {
+                    $days = intval($trend_range);
+                    $interval_sql = 'AND first_message_at >= DATE_SUB(CURDATE(), INTERVAL ' . $days . ' DAY)';
+                }
+                $stmt = $conn->prepare('SELECT 
+                    DATE(first_message_at) as date,
+                    COUNT(*) as conversation_count
+                    FROM conversations 
+                    WHERE bot_id = ? ' . ($interval_sql ? $interval_sql : '') . '
+                    GROUP BY DATE(first_message_at)
+                    ORDER BY date');
+                if ($stmt) {
+                    $stmt->bind_param('i', $bot_id);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    if ($result) {
+                        $time_series_data = [];
+                        while ($row = $result->fetch_assoc()) {
+                            $time_series_data[] = [
+                                'date' => $row['date'],
+                                'count' => intval($row['conversation_count'])
+                            ];
+                        }
+                        $conv_stats['time_series_data'] = $time_series_data;
+                    }
+                }
+                
+                // Get time series data for today's conversations (by hour)
+                $stmt = $conn->prepare('SELECT 
+                    HOUR(first_message_at) as hour,
+                    COUNT(*) as conversation_count
+                    FROM conversations 
+                    WHERE bot_id = ? AND DATE(first_message_at) = CURDATE()
+                    GROUP BY HOUR(first_message_at)
+                    ORDER BY hour');
+                if ($stmt) {
+                    $stmt->bind_param('i', $bot_id);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    if ($result) {
+                        $today_time_series_data = [];
+                        while ($row = $result->fetch_assoc()) {
+                            $today_time_series_data[] = [
+                                'hour' => intval($row['hour']),
+                                'count' => intval($row['conversation_count'])
+                            ];
+                        }
+                        $conv_stats['today_time_series_data'] = $today_time_series_data;
+                    }
+                }
             }
         }
     }
@@ -312,7 +369,9 @@ try {
         'total_messages_today' => intval($total_messages_today),
         'last_conversation' => $last_conversation,
         'top_questions' => $top_questions,
-        'query_stats' => $query_stats
+        'query_stats' => $query_stats,
+        'time_series_data' => $conv_stats['time_series_data'] ?? [],
+        'today_time_series_data' => $conv_stats['today_time_series_data'] ?? []
     ];
     
     echo json_encode(['success' => true, 'report' => $report]);
