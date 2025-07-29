@@ -9,7 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 include_once 'db_connect.php';
-include_once 'gemini_api.php';
 
 $bot_id = isset($_GET['bot_id']) ? intval($_GET['bot_id']) : 0;
 if (!$bot_id) {
@@ -17,19 +16,81 @@ if (!$bot_id) {
     exit;
 }
 
-// Get bot name for better analysis
-$bot_name = null;
-$stmt = $conn->prepare('SELECT name FROM bots WHERE id = ?');
-if ($stmt) {
-    $stmt->bind_param('i', $bot_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    if ($result) {
-        $row = $result->fetch_assoc();
-        if ($row) {
-            $bot_name = $row['name'];
+// Function to categorize and group similar questions
+function categorizeQuestions($userMessages) {
+    $categories = [
+        'greetings' => ['hi', 'hello', 'hey', 'good morning', 'good afternoon', 'good evening'],
+        'identity' => ['who are you', 'what are you', 'tell me about yourself', 'your name'],
+        'company_info' => ['medha tech', 'medha', 'company', 'about company', 'what is medha'],
+        'services' => ['services', 'what do you do', 'offer', 'provide', 'help'],
+        'contact' => ['contact', 'phone', 'email', 'address', 'location', 'reach'],
+        'pricing' => ['price', 'cost', 'fee', 'charge', 'how much'],
+        'support' => ['help', 'support', 'assist', 'problem', 'issue']
+    ];
+       
+    $category_counts = [];
+    $uncategorized = [];
+    
+    foreach ($userMessages as $msg) {
+        $msg_lower = strtolower(trim($msg));
+        $categorized = false;
+        
+        foreach ($categories as $category => $keywords) {
+            foreach ($keywords as $keyword) {
+                if (strpos($msg_lower, $keyword) !== false) {
+                    $category_counts[$category] = ($category_counts[$category] ?? 0) + 1;
+                    $categorized = true;
+                    break 2;
+                }
+            }
+        }
+        
+        if (!$categorized && !empty($msg_lower)) {
+            $uncategorized[] = $msg;
         }
     }
+    
+    // Create meaningful question labels
+    $question_labels = [
+        'greetings' => 'Greetings/Hello',
+        'identity' => 'Who are you?',
+        'company_info' => 'What is Medha Tech?',
+        'services' => 'What services do you offer?',
+        'contact' => 'How can I contact you?',
+        'pricing' => 'What are your prices?',
+        'support' => 'Can you help me?'
+    ];
+    
+    $questions = [];
+    
+    // Add categorized questions
+    foreach ($category_counts as $category => $count) {
+        if (isset($question_labels[$category])) {
+            $questions[] = [
+                'question' => $question_labels[$category],
+                'count' => $count
+            ];
+        }
+    }
+    
+    // Add some uncategorized questions (limit to 2)
+    $uncategorized_counts = array_count_values($uncategorized);
+    arsort($uncategorized_counts);
+    $top_uncategorized = array_slice($uncategorized_counts, 0, 2, true);
+    
+    foreach ($top_uncategorized as $question => $count) {
+        $questions[] = [
+            'question' => $question,
+            'count' => $count
+        ];
+    }
+    
+    // Sort by count and return top 5
+    usort($questions, function($a, $b) {
+        return $b['count'] - $a['count'];
+    });
+    
+    return array_slice($questions, 0, 5);
 }
 
 try {
@@ -37,6 +98,8 @@ try {
     $conv_stats = [
         'total_conversations' => 0,
         'total_conversations_today' => 0,
+        'time_series_data' => [], // For time graph
+        'today_time_series_data' => [], // For today's time graph
         'avg_messages_per_conversation' => 0,
         'longest_conversation' => 0,
         'last_conversation' => null,
@@ -153,12 +216,61 @@ try {
                     $user_messages[] = $row['message_text'];
                 }
                 
-                // Use the generalized analysis function with bot name
-                if (!empty($user_messages)) {
-                    try {
-                        $top_questions = analyzeUserQuestions($user_messages, $bot_name);
-                    } catch (Exception $e) {
-                        $top_questions = simpleFallbackAnalysis($user_messages, $bot_name);
+                // Use the categorization function
+                $top_questions = categorizeQuestions($user_messages);
+                
+                // Get time series data for overall conversations (last 7 days)
+                $trend_range = isset($_GET['trend_range']) ? $_GET['trend_range'] : '7';
+                if ($trend_range === 'overall') {
+                    $interval_sql = '';
+                } else {
+                    $days = intval($trend_range);
+                    $interval_sql = 'AND first_message_at >= DATE_SUB(CURDATE(), INTERVAL ' . $days . ' DAY)';
+                }
+                $stmt = $conn->prepare('SELECT 
+                    DATE(first_message_at) as date,
+                    COUNT(*) as conversation_count
+                    FROM conversations 
+                    WHERE bot_id = ? ' . ($interval_sql ? $interval_sql : '') . '
+                    GROUP BY DATE(first_message_at)
+                    ORDER BY date');
+                if ($stmt) {
+                    $stmt->bind_param('i', $bot_id);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    if ($result) {
+                        $time_series_data = [];
+                        while ($row = $result->fetch_assoc()) {
+                            $time_series_data[] = [
+                                'date' => $row['date'],
+                                'count' => intval($row['conversation_count'])
+                            ];
+                        }
+                        $conv_stats['time_series_data'] = $time_series_data;
+                    }
+                }
+                
+                // Get time series data for today's conversations (by hour)
+                $stmt = $conn->prepare('SELECT 
+                    HOUR(first_message_at) as hour,
+                    COUNT(*) as conversation_count
+                    FROM conversations 
+                    WHERE bot_id = ? AND DATE(first_message_at) = CURDATE()
+                    GROUP BY HOUR(first_message_at)
+                    ORDER BY hour');
+                if ($stmt) {
+                    $stmt->bind_param('i', $bot_id);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    if ($result) {
+                        $today_time_series_data = [];
+                        while ($row = $result->fetch_assoc()) {
+                            $today_time_series_data[] = [
+                                'hour' => intval($row['hour']),
+                                'count' => intval($row['conversation_count'])
+                            ];
+                        }
+                        $conv_stats['today_time_series_data'] = $today_time_series_data;
                     }
                 }
             }
@@ -257,7 +369,9 @@ try {
         'total_messages_today' => intval($total_messages_today),
         'last_conversation' => $last_conversation,
         'top_questions' => $top_questions,
-        'query_stats' => $query_stats
+        'query_stats' => $query_stats,
+        'time_series_data' => $conv_stats['time_series_data'] ?? [],
+        'today_time_series_data' => $conv_stats['today_time_series_data'] ?? []
     ];
     
     echo json_encode(['success' => true, 'report' => $report]);

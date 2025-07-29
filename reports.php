@@ -335,22 +335,11 @@ $bots = $stmt->get_result();
 
     <script>
         function showReport(botId, botName) {
+            currentBotId = botId;
+            currentBotName = botName;
             document.getElementById('reportTitle').textContent = botName + ' - Report';
             document.getElementById('reportModal').style.display = 'block';
-            
-            // Load report data
-            fetch('get_bot_report.php?bot_id=' + botId)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        displayReport(data.report);
-                    } else {
-                        document.getElementById('reportData').innerHTML = '<div style="color: #c62828; text-align: center; padding: 2rem;">Error loading report: ' + data.message + '</div>';
-                    }
-                })
-                .catch(error => {
-                    document.getElementById('reportData').innerHTML = '<div style="color: #c62828; text-align: center; padding: 2rem;">Error loading report</div>';
-                });
+            loadReportData();
         }
 
         function closeReport() {
@@ -395,13 +384,37 @@ $bots = $stmt->get_result();
                     <div class="chart-title">📊 Activity Overview</div>
                     <div class="charts-grid">
                         <div>
-                            <div class="chart-container">
+                        <div class="chart-container">
                                 <canvas id="conversationChart"></canvas>
                             </div>
                         </div>
                         <div>
-                            <div class="chart-container">
+                        <div class="chart-container">
                                 <canvas id="queryChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chart-section">
+                    <div class="chart-title">📈 Conversation Trends</div>
+                    <div class="charts-grid">
+                        <div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="font-weight: 500; color: #1565c0;">Time Series</span>
+                                <select id="trendRangeSelect" style="margin-left: 1rem; padding: 0.2rem 0.5rem; font-size: 1rem;">
+                                    <option value="7">Last 7 Days</option>
+                                    <option value="15">Last 15 Days</option>
+                                    <option value="30">Last 30 Days</option>
+                                </select>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="timeSeriesChart"></canvas>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="chart-container">
+                                <canvas id="todayTimeChart"></canvas>
                             </div>
                         </div>
                     </div>
@@ -434,8 +447,8 @@ $bots = $stmt->get_result();
                             <div class="query-stat-label">Most Active Hour</div>
                             <div class="query-stat-value">${report.query_stats.most_active_query_hour}</div>
                         </div>
-                    </div>
-                </div>
+        </div>
+    </div>
                 
                 <div class="top-questions">
                     <h3>❓ Top 5 Most Frequently Asked Questions</h3>
@@ -453,6 +466,8 @@ $bots = $stmt->get_result();
             setTimeout(() => {
                 createConversationChart(report);
                 createQueryChart(report);
+                createTimeSeriesChart(report);
+                createTodayTimeChart(report);
             }, 100);
         }
 
@@ -460,9 +475,9 @@ $bots = $stmt->get_result();
             const ctx = document.getElementById('conversationChart').getContext('2d');
             new Chart(ctx, {
                 type: 'doughnut',
-                data: {
+            data: {
                     labels: ['Today', 'Overall'],
-                    datasets: [{
+                datasets: [{
                         data: [report.total_conversations_today, report.total_conversations - report.total_conversations_today],
                         backgroundColor: [
                             '#1565c0',
@@ -470,9 +485,9 @@ $bots = $stmt->get_result();
                         ],
                         borderWidth: 0,
                         hoverOffset: 4
-                    }]
-                },
-                options: {
+                }]
+            },
+            options: {
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
@@ -481,7 +496,7 @@ $bots = $stmt->get_result();
                             labels: {
                                 padding: 20,
                                 usePointStyle: true
-                            }
+            }
                         },
                         title: {
                             display: true,
@@ -501,12 +516,12 @@ $bots = $stmt->get_result();
             const ctx = document.getElementById('queryChart').getContext('2d');
             new Chart(ctx, {
                 type: 'bar',
-                data: {
+            data: {
                     labels: ['Total Queries', 'Today\'s Queries'],
-                    datasets: [{
+                datasets: [{
                         label: 'Support Queries',
                         data: [report.query_stats.total_queries, report.query_stats.queries_today],
-                        backgroundColor: [
+                    backgroundColor: [
                             'rgba(21, 101, 192, 0.8)',
                             'rgba(21, 101, 192, 0.4)'
                         ],
@@ -517,9 +532,9 @@ $bots = $stmt->get_result();
                         borderWidth: 2,
                         borderRadius: 8,
                         borderSkipped: false,
-                    }]
-                },
-                options: {
+                }]
+            },
+            options: {
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
@@ -555,9 +570,222 @@ $bots = $stmt->get_result();
                             }
                         }
                     }
+            }
+        });
+        }
+
+        let timeSeriesChartInstance = null;
+
+        function createTimeSeriesChart(report) {
+            const ctx = document.getElementById('timeSeriesChart').getContext('2d');
+            if (timeSeriesChartInstance) {
+                timeSeriesChartInstance.destroy();
+            }
+            const trendRange = currentTrendRange || '7';
+            let labels = [];
+            let data = [];
+            // Generate all dates in the range
+            let days = 7;
+            if (trendRange === '15') days = 15;
+            else if (trendRange === '30') days = 30;
+            let dateMap = {};
+            if (report.time_series_data && report.time_series_data.length > 0) {
+                for (const item of report.time_series_data) {
+                    dateMap[item.date] = item.count;
+                }
+            }
+            // Only generate for 7, 15, 30 days
+            const today = new Date();
+            for (let i = days - 1; i >= 0; i--) {
+                const d = new Date(today);
+                d.setDate(today.getDate() - i);
+                const dateStr = d.toISOString().split('T')[0];
+                labels.push(dateStr);
+                data.push(dateMap[dateStr] || 0);
+            }
+            let titleText = '';
+            if (trendRange === 'overall') {
+                titleText = 'Overall Conversations';
+            } else {
+                titleText = `Last ${trendRange} Days - Overall Conversations`;
+            }
+            timeSeriesChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Conversations',
+                        data: data,
+                        borderColor: '#1565c0',
+                        backgroundColor: 'rgba(21, 101, 192, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#1565c0',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        pointRadius: 5,
+                        pointHoverRadius: 7
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: titleText,
+                            color: '#1565c0',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(21, 101, 192, 0.1)'
+                            },
+                            ticks: {
+                                color: '#1565c0',
+                                stepSize: 1
+                            },
+                            title: {
+                                display: true,
+                                text: 'Number of Conversations',
+                                color: '#1565c0',
+                                font: { size: 12, weight: 'bold' }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#1565c0',
+                                autoSkip: true,
+                                maxTicksLimit: 10
+                            },
+                            title: {
+                                display: true,
+                                text: 'Date',
+                                color: '#1565c0',
+                                font: { size: 12, weight: 'bold' }
+                            }
+                        }
+                    }
                 }
             });
         }
+
+        function createTodayTimeChart(report) {
+            const ctx = document.getElementById('todayTimeChart').getContext('2d');
+            
+            // Prepare data for today's hours (0-23)
+            const labels = [];
+            const data = [];
+            
+            // Generate hour labels
+            for (let hour = 0; hour < 24; hour++) {
+                labels.push(hour === 0 ? '12 AM' : hour === 12 ? '12 PM' : hour > 12 ? (hour - 12) + ' PM' : hour + ' AM');
+            }
+            
+            // Fill data from report or default to 0
+            for (let hour = 0; hour < 24; hour++) {
+                const hourData = report.today_time_series_data.find(item => item.hour === hour);
+                data.push(hourData ? hourData.count : 0);
+            }
+            
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Conversations',
+                        data: data,
+                        backgroundColor: 'rgba(21, 101, 192, 0.6)',
+                        borderColor: '#1565c0',
+                        borderWidth: 1,
+                        borderRadius: 4,
+                        borderSkipped: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Today\'s Conversations by Hour',
+                            color: '#1565c0',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(21, 101, 192, 0.1)'
+                            },
+                            ticks: {
+                                color: '#1565c0',
+                                stepSize: 1
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#1565c0',
+                                maxRotation: 45,
+                                minRotation: 45
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        let currentBotId = null;
+        let currentBotName = null;
+        let currentTrendRange = '7';
+
+        function loadReportData() {
+            document.getElementById('reportData').innerHTML = `<div style="text-align: center; padding: 2rem;"><div style="color: #666;">Loading report...</div></div>`;
+            fetch('get_bot_report.php?bot_id=' + currentBotId + '&trend_range=' + currentTrendRange)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        displayReport(data.report);
+                    } else {
+                        document.getElementById('reportData').innerHTML = '<div style="color: #c62828; text-align: center; padding: 2rem;">Error loading report: ' + data.message + '</div>';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('reportData').innerHTML = '<div style="color: #c62828; text-align: center; padding: 2rem;">Error loading report</div>';
+                });
+        }
+
+        document.addEventListener('change', function(e) {
+            if (e.target && e.target.id === 'trendRangeSelect') {
+                currentTrendRange = e.target.value;
+                if (currentBotId) {
+                    loadReportData();
+                }
+            }
+        });
 
         // Close modal when clicking outside
         window.onclick = function(event) {
