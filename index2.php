@@ -11,7 +11,7 @@
                         <h2 class="text-color-light font-weight-extra-bold text-12 mb-4 appear-animation"
                             data-appear-animation="blurIn" data-appear-animation-delay="500"
                             data-plugin-options="{'firstLoadNoAnim': true, 'minWindowWidth': 0}">
-                            Experience <span class="position-relative">AI Chatbot
+                            Experience <span class="position-relative">AI Chatbot 
                                 <!-- <span class="position-absolute left-50pct transform3dx-n50 bottom-0">
                             <img src="img/slides/slide-blue-line-big.png" class="w-auto appear-animation"
                                  data-appear-animation="fadeInLeftShorterPlus"
