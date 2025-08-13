@@ -2,7 +2,7 @@
 
 <div role="main" class="main">
     <div id="home" class="position-relative pt-5"
-        style="height: 70vh; background-image: url('img/chtbot.jpg'); background-size: cover; background-position: center; background-color: #35383d;">
+        style="height: 70vh; background-image: url('img/chatbottt.png'); background-size: cover; background-position: center; background-color: #35383d;">
         <div class="container position-relative z-index-3 h-100">
             <div class="row justify-content-center align-items-center h-100">
                 <div class="col-lg-12">
@@ -21,17 +21,17 @@
                             </span>
                         </h2>
 
-                      <div class="d-flex gap-3 flex-wrap">
-    <a href="https://medhatech.in/mira/signup.php"
-        class="btn btn-primary btn-rounded font-weight-bold text-3 px-5 py-3 appear-animation"
-        data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1600"
-        data-plugin-options="{'firstLoadNoAnim': true, 'minWindowWidth': 0}">Get Started</a>
+                        <div class="d-flex gap-3 flex-wrap">
+                            <a href="https://medhatech.in/mira/signup.php"
+                                class="btn btn-primary btn-rounded font-weight-bold text-3 px-5 py-3 appear-animation"
+                                data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1600"
+                                data-plugin-options="{'firstLoadNoAnim': true, 'minWindowWidth': 0}">Get Started</a>
 
-    <a href="https://medhatech.in/mira/signup.php"
-        class="btn btn-primary btn-rounded font-weight-bold text-3 px-5 py-3 appear-animation"
-        data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1600"
-        data-plugin-options="{'firstLoadNoAnim': true, 'minWindowWidth': 0}">Login</a>
-</div>
+                            <a href="https://medhatech.in/mira/signup.php"
+                                class="btn btn-primary btn-rounded font-weight-bold text-3 px-5 py-3 appear-animation"
+                                data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1600"
+                                data-plugin-options="{'firstLoadNoAnim': true, 'minWindowWidth': 0}">Login</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -39,205 +39,224 @@
     </div>
 
     <div id="projects" class="container">
-					<div class="row justify-content-center pt-3 mt-3">
-						<div class="col-lg-9 text-center">
-							<div class="appear-animation" data-appear-animation="fadeInUpShorter">
-								<h2 class="font-weight-bold mb-2">How Mira Chatbot Works</h2>
-								<p class="mb-4">Mira makes AI assistance effortless—turning questions into instant, intelligent answers.</p>
-							</div>
-								</div>
-					</div>
-					<div class="row pb-3 mb-3">
-						<div class="col">
+        <div class="row justify-content-center pt-3 mt-3">
+            <div class="col-lg-9 text-center">
+                <div class="appear-animation" data-appear-animation="fadeInUpShorter">
+                    <h2 class="font-weight-bold mb-2">How Mira Chatbot Works</h2>
+                    <p class="mb-4">Mira makes AI assistance effortless—turning questions into instant, intelligent
+                        answers.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row pb-3 mb-3">
+            <div class="col">
 
-							<div class="featured-boxes featured-boxes-flat">
-						<div class="row">
-							<div class="col-lg-3 col-sm-6">
-								<div class="featured-box featured-box-primary featured-box-effect-2">
-									<div class="box-content box-content-border-bottom">
-										<i class="icon-featured far fa-heart"></i>
-										<h4 class="font-weight-normal text-5 mt-3"> <strong class="font-weight-extra-bold">Type Your Question</strong></h4>
-										<br><p class="mb-2 mt-2 text-2">Simply enter what you need to know.</p>
-									</div>
-								</div>
-							</div>
-                            <div class="col-lg-3 col-sm-6">
-								<div class="featured-box featured-box-quaternary featured-box-effect-2">
-									<div class="box-content box-content-border-bottom">
-										<i class="icon-featured far fa-edit"></i>
-										<h4 class="font-weight-normal text-5 mt-3"> <strong class="font-weight-extra-bold"> AI Understands You</strong></h4>
-										<br><p class="mb-2 mt-2 text-2">Mira analyzes your words, detects intent, and finds the best answer. </p>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-sm-6">
-								<div class="featured-box featured-box-secondary featured-box-effect-2">
-									<div class="box-content box-content-border-bottom">
-										<i class="icon-featured far fa-file-alt"></i>
-										<h4 class="font-weight-normal text-5 mt-3"> <strong class="font-weight-extra-bold">Get Smart Suggestions</strong></h4>
-										<br><p class="mb-2 mt-2 text-2">Receive helpful insights, resources, or next steps.</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-sm-6">
-								<div class="featured-box featured-box-tertiary featured-box-effect-2">
-									<div class="box-content box-content-border-bottom">
-										<i class="icon-featured far fa-star"></i>
-										<h4 class="font-weight-normal text-5 mt-3"><strong class="font-weight-extra-bold">Empower Admins</strong></h4>
-										<br><p class="mb-2 mt-2 text-2">Access dashboards, analytics, and tools to track and improve engagement.</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+                <div class="featured-boxes featured-boxes-flat">
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="featured-box featured-box-primary featured-box-effect-2">
+                                <div class="box-content box-content-border-bottom">
+                                    <i class="icon-featured far fa-heart"></i>
+                                    <h4 class="font-weight-normal text-5 mt-3"> <strong
+                                            class="font-weight-extra-bold">Type Your Question</strong></h4>
+                                    <br>
+                                    <p class="mb-2 mt-2 text-2">Simply enter what you need to know.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="featured-box featured-box-quaternary featured-box-effect-2">
+                                <div class="box-content box-content-border-bottom">
+                                    <i class="icon-featured far fa-edit"></i>
+                                    <h4 class="font-weight-normal text-5 mt-3"> <strong class="font-weight-extra-bold">
+                                            AI Understands You</strong></h4>
+                                    <br>
+                                    <p class="mb-2 mt-2 text-2">Mira analyzes your words, detects intent, and finds the
+                                        best answer. </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="featured-box featured-box-secondary featured-box-effect-2">
+                                <div class="box-content box-content-border-bottom">
+                                    <i class="icon-featured far fa-file-alt"></i>
+                                    <h4 class="font-weight-normal text-5 mt-3"> <strong
+                                            class="font-weight-extra-bold">Get Smart Suggestions</strong></h4>
+                                    <br>
+                                    <p class="mb-2 mt-2 text-2">Receive helpful insights, resources, or next steps.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="featured-box featured-box-tertiary featured-box-effect-2">
+                                <div class="box-content box-content-border-bottom">
+                                    <i class="icon-featured far fa-star"></i>
+                                    <h4 class="font-weight-normal text-5 mt-3"><strong
+                                            class="font-weight-extra-bold">Empower Admins</strong></h4>
+                                    <br>
+                                    <p class="mb-2 mt-2 text-2">Access dashboards, analytics, and tools to track and
+                                        improve engagement.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-						</div>
-					</div>
-				</div>
+            </div>
+        </div>
+    </div>
+
     <section id="services" class="section section-height-3 bg-primary border-0 m-0 appear-animation"
         data-appear-animation="fadeIn">
         <div class="container my-3">
             <div class="row mb-3">
                 <div class="col text-center appear-animation" data-appear-animation="fadeInUpShorter"
                     data-appear-animation-delay="200">
-                    <h2 class="font-weight-bold text-color-light mb-2">Key Features</h2>
-                   
+                    <h2 class="font-weight-bold text-color-light mb-2">Mira - What we offer our clients</h2>
+                    <p class="mb-4 text-light">Your all-in-one AI chatbot platform to create, customize, and manage
+                        multiple bots for your business, website, or personal use.Powerful, scalable, and beautifully
+                        simple.</p>
                 </div>
             </div>
             <div class="row mb-lg-4">
-                <div class="col-lg-4 appear-animation" data-appear-animation="fadeInLeftShorter"
+                <div class="col-lg-3 appear-animation" data-appear-animation="fadeInLeftShorter"
                     data-appear-animation-delay="300">
                     <div class="feature-box feature-box-style-2">
                         <div class="feature-box-icon">
-                            <i class="icons icon-support text-color-light"></i>
+                            <i class="fa-solid fa-robot text-color-light"></i>
                         </div>
                         <div class="feature-box-info">
-                            <h4 class="font-weight-bold text-color-light text-4 mb-2">Curriculum Support</h4>
-                            <p class="text-color-light opacity-7">"The chatbot provides curriculum-aligned assistance, helping students and educators with subject-specific queries, learning resources, and concept clarification in real time."</p>
+                            <h4 class="font-weight-bold text-color-light text-4 mb-2">Multi-Bot Management</h4>
+                            <p class="text-color-light opacity-7">"Easily create and manage unlimited chatbots—each with
+                                its own name, colors, logo, and dedicated knowledge base."</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 appear-animation" data-appear-animation="fadeInUpShorter">
+                <div class="col-lg-3 appear-animation" data-appear-animation="fadeInUpShorter">
                     <div class="feature-box feature-box-style-2">
                         <div class="feature-box-icon">
-                            <i class="icons icon-layers text-color-light"></i>
+                            <i class="fa-solid fa-palette text-color-light"></i>
                         </div>
                         <div class="feature-box-info">
-                            <h4 class="font-weight-bold text-color-light text-4 mb-2">Multilingual Support</h4>
-                            <p class="text-color-light opacity-7">"The chatbot offers multilingual support, enabling users to interact seamlessly in their preferred language for a more inclusive and accessible experience."</p>
+                            <h4 class="font-weight-bold text-color-light text-4 mb-2">Easy Customization</h4>
+                            <p class="text-color-light opacity-7">"Personalize every bot with your branding, custom
+                                color schemes, and unique conversational styles."</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 appear-animation" data-appear-animation="fadeInRightShorter"
+                <div class="col-lg-3 appear-animation" data-appear-animation="fadeInRightShorter"
                     data-appear-animation-delay="300">
                     <div class="feature-box feature-box-style-2">
                         <div class="feature-box-icon">
-                            <i class="icons icon-menu text-color-light"></i>
+                            <i class="fas fa-bolt text-color-light"></i>
                         </div>
                         <div class="feature-box-info">
-                            <h4 class="font-weight-bold text-color-light text-4 mb-2">Personalized Learning</h4>
-                            <p class="text-color-light opacity-7">"The chatbot delivers personalized learning experiences by adapting responses based on each learner’s pace, preferences, and progress."</p>
+                            <h4 class="font-weight-bold text-color-light text-4 mb-2">Fast & Scalable</h4>
+                            <p class="text-color-light opacity-7">"Engineered for performance and growth. Add more bots
+                                or users anytime—no restrictions."</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 appear-animation" data-appear-animation="fadeInRightShorter"
+                    data-appear-animation-delay="300">
+                    <div class="feature-box feature-box-style-2">
+                        <div class="feature-box-icon">
+                            <i class="fas fa-lock text-color-light"></i>
+                        </div>
+                        <div class="feature-box-info">
+                            <h4 class="font-weight-bold text-color-light text-4 mb-2">Secure & Private</h4>
+                            <p class="text-color-light opacity-7">"Your data stays safe and under your control. Only you
+                                can access and manage your bots and their knowledge bases."</p>
                         </div>
                     </div>
                 </div>
             </div>
-          
+
         </div>
     </section>
 
 
-    <div id="offers" class="container">
-					<div class="row justify-content-center pt-3 mt-3">
-						<div class="col-lg-9 text-center">
-							<div class="appear-animation" data-appear-animation="fadeInUpShorter">
-								<h2 class="font-weight-bold mb-2">Mira - What we offer our clients</h2>
-								<p class="mb-4">Your all-in-one AI chatbot platform to create, customize, and manage multiple bots for your business, website, or personal use.Powerful, scalable, and beautifully simple.</p>
-							</div>
-								</div>
-					</div>
-					<div class="row pb-3 mb-3">
-						<div class="col">
+    <section id="mira" class="section bg-color-light border-0 py-5 m-0">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Left Column -->
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <h2 class="font-weight-bold mb-3">
+                    <span style="font-size: 1.5em;">🎨</span> Make Mira Truly Yours
+                </h2>
+                <p class="text-4">
+                    Vendors can fully personalize each chatbot to match their brand and purpose—no coding required.
+                </p>
+                <ul class="list-unstyled mt-4">
+                    <li class="mb-4 text-dark"><i class="fas fa-pen text-primary me-2"></i> Bot Name</li>
+                    <li class="mb-4 text-dark"><i class="fas fa-image text-warning me-2"></i> Bot Logo (JPG, PNG, GIF)</li>
+                    <li class="mb-4 text-dark"><i class="fas fa-palette text-danger me-2"></i> Primary & Secondary Colors</li>
+                    <li class="mb-4 text-dark"><i class="fas fa-book text-secondary me-2"></i> Knowledge Base</li>
+                    <li class="mb-4 text-dark"><i class="fas fa-font text-purple me-2"></i> Powered By Text</li>
+                    <li class="mb-4 text-dark"><i class="fas fa-envelope text-orange me-2"></i> Support Email Setup</li>
+                    <li class="mb-4 text-dark"><i class="fas fa-list text-success me-2"></i> Support Form Fields</li>
+                </ul>
+            </div>
 
-							<div class="featured-boxes featured-boxes-flat">
-						<div class="row">
-							<div class="col-lg-3 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
-							
+            <!-- Right Column -->
+            <div class="col-lg-6">
+                <div class="bg-white rounded p-4 shadow-sm">
+                    <h4 class="mb-4">Chatbot Settings</h4>
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Bot Name</label>
+                            <input type="text" class="form-control" value="Mira Chatbot">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Bot Logo</label>
+                            <div class="d-flex align-items-center">
+                                <img src="img/chat-bot.jpg" alt="Bot Logo" class="me-3" style="width:50px;height:50px;border-radius:6px;">
+                                <input type="file" class="form-control" style="max-width:200px;">
+                            </div>
+                        </div>
+                        <div class="mb-3 d-flex gap-2">
+                            <button type="button" class="btn btn-light border">Primary Color</button>
+                            <button type="button" class="btn btn-light border">Secondary Color</button>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Knowledge Base</label>
+                            <input type="text" class="form-control" placeholder="Paste your text or upload a .txt file">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Powered By</label>
+                            <input type="text" class="form-control" value="Your Company">
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Save Settings</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-							<div class="card border-0 bg-color-grey">
-								<div class="card-body">
-									<i class="fa-solid fa-robot text-color-primary text-8"></i>
-									<h4 class="card-title mt-2 mb-1 text-4 font-weight-bold">Multi-Bot Management</h4>
-									<p class="card-text">Easily create and manage unlimited chatbots—each with its own name, colors, logo, and dedicated knowledge base.</p>
-								</div>
-							</div>
 
-						</div>
-                            <div class="col-lg-3 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
-							
-
-							<div class="card border-0 bg-color-grey">
-								<div class="card-body">
-									<i class="fa-solid fa-palette text-color-primary text-8"></i>
-									<h4 class="card-title mt-2 mb-1 text-4 font-weight-bold">Easy Customization</h4>
-									<p class="card-text">Personalize every bot with your branding, custom color schemes, and unique conversational styles.</p>
-								</div>
-							</div>
-
-						</div>
-							<div class="col-lg-3 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
-							
-
-							<div class="card border-0 bg-color-grey">
-								<div class="card-body">
-									<i class="fas fa-bolt text-color-primary text-8"></i>
-									<h4 class="card-title mt-2 mb-1 text-4 font-weight-bold">Fast & Scalable</h4>
-									<p class="card-text">Engineered for performance and growth. Add more bots or users anytime—no restrictions.<br><br></p>
-								</div>
-							</div>
-
-						</div>
-						<div class="col-lg-3 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
-							
-
-							<div class="card border-0 bg-color-grey">
-								<div class="card-body">
-									<i class="fas fa-lock text-color-primary text-8"></i>
-									<h4 class="card-title mt-2 mb-1 text-4 font-weight-bold">Secure & Private</h4>
-									<p class="card-text">Your data stays safe and under your control. Only you can access and manage your bots and their knowledge bases.</p>
-								</div>
-							</div>
-
-						</div>
-						</div>
-					</div>
-
-						</div>
-					</div>
-				</div>
-
-    <section id="clients"
-        class="section  section-height-0  border-0 m-0">
+    <section id="clients" class="section  section-height-0  border-0 m-0">
         <div class="container">
             <div class="row">
                 <div class="col text-center">
                     <h2 class="font-weight-bold  mb-0">Mira chatbot Demo video</h2>
-                    
+
                 </div>
             </div>
             <div class="row text-center py-3 my-4">
-                
+
             </div>
             <div class="row">
                 <div class="col">
 
-                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-    <iframe src="https://www.youtube.com/embed/rgVAjJdXGys?si=57If7hI7-0dAjAl-" 
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-    </iframe>
-</div>
+                    <div
+                        style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+                        <iframe src="https://www.youtube.com/embed/rgVAjJdXGys?si=57If7hI7-0dAjAl-"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
 
                 </div>
             </div>
@@ -248,7 +267,7 @@
         <div class="row pt-2 mt-2 mb-2">
             <div class="col text-center appear-animation" data-appear-animation="fadeInUpShorter">
                 <h2 class="font-weight-bold mb-1">Testimonials</h2>
-                
+
             </div>
         </div>
         <div class="row pb-2 mb-2 appear-animation" data-appear-animation="fadeInUpShorter"
@@ -260,117 +279,137 @@
                             <img src="img/blogss.png" class="img-fluid" alt="">
                         </a>
                     </span>
-                   
+
                 </span>
             </div>
             <div class="col-lg-9">
-							<div class="owl-carousel owl-theme" data-plugin-options="{'items': 1, 'autoplay': true, 'autoplayTimeout': 3000}">
-								<div>
-									<div class="testimonial testimonial-style-2">
-										<blockquote>
-											<p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit vehicula est, in consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit vehicula est, in consequat.  Donec hendrerit vehicula est, in consequat.  Donec hendrerit vehicula est, in consequat.</p>
-										</blockquote>
-										<div class="testimonial-arrow-down"></div>
-										<div class="testimonial-author">
-											<img src="img/clients/client-1.jpg" class="img-fluid rounded-circle" alt="">
-											<p><strong class="font-weight-extra-bold">John Smith</strong><span>CEO & Founder - Okler</span></p>
-										</div>
-									</div>
-								</div>
-								<div>
-									<div class="testimonial testimonial-style-2">
-										<blockquote>
-											<p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit vehicula est, in consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-										</blockquote>
-										<div class="testimonial-arrow-down"></div>
-										<div class="testimonial-author">
-											<img src="img/clients/client-1.jpg" class="img-fluid rounded-circle" alt="">
-											<p><strong class="font-weight-extra-bold">John Smith</strong><span>CEO & Founder - Okler</span></p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+                <div class="owl-carousel owl-theme"
+                    data-plugin-options="{'items': 1, 'autoplay': true, 'autoplayTimeout': 3000}">
+                    <div>
+                        <div class="testimonial testimonial-style-2">
+                            <blockquote>
+                                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit
+                                    vehicula est, in consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Donec hendrerit vehicula est, in consequat. Donec hendrerit vehicula est, in
+                                    consequat. Donec hendrerit vehicula est, in consequat.</p>
+                            </blockquote>
+                            <div class="testimonial-arrow-down"></div>
+                            <div class="testimonial-author">
+                                <img src="img/clients/client-1.jpg" class="img-fluid rounded-circle" alt="">
+                                <p><strong class="font-weight-extra-bold">John Smith</strong><span>CEO & Founder -
+                                        Okler</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="testimonial testimonial-style-2">
+                            <blockquote>
+                                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit
+                                    vehicula est, in consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                </p>
+                            </blockquote>
+                            <div class="testimonial-arrow-down"></div>
+                            <div class="testimonial-author">
+                                <img src="img/clients/client-1.jpg" class="img-fluid rounded-circle" alt="">
+                                <p><strong class="font-weight-extra-bold">John Smith</strong><span>CEO & Founder -
+                                        Okler</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <section id="contact" class="section bg-color-primary-scale-1 border-0 py-0 m-0">
-     <div class="container">
+        <div class="container">
 
-					<div class="row py-4">
-						<div class="col-lg-6">
+            <div class="row py-4">
+                <div class="col-lg-6">
 
-							<h2 class="font-weight-bold text-8 mt-2 mb-0">Contact Us</h2>
-							<p class="mb-4">Feel free to ask for details, don't save any questions!</p>
+                    <h2 class="font-weight-bold text-8 mt-2 mb-0">Contact Us</h2>
+                    <p class="mb-4">Feel free to ask for details, don't save any questions!</p>
 
-							<form class="contact-form" action="php/contact-form.php" method="POST">
-								<div class="contact-form-success alert alert-success d-none mt-4">
-									<strong>Success!</strong> Your message has been sent to us.
-								</div>
+                    <form class="contact-form" action="php/contact-form.php" method="POST">
+                        <div class="contact-form-success alert alert-success d-none mt-4">
+                            <strong>Success!</strong> Your message has been sent to us.
+                        </div>
 
-								<div class="contact-form-error alert alert-danger d-none mt-4">
-									<strong>Error!</strong> There was an error sending your message.
-									<span class="mail-error-message text-1 d-block"></span>
-								</div>
+                        <div class="contact-form-error alert alert-danger d-none mt-4">
+                            <strong>Error!</strong> There was an error sending your message.
+                            <span class="mail-error-message text-1 d-block"></span>
+                        </div>
 
-								<div class="row">
-									<div class="form-group col-lg-6">
-										<label class="form-label mb-1 text-2">Full Name</label>
-										<input type="text" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control text-3 h-auto py-2" name="name" required>
-									</div>
-									<div class="form-group col-lg-6">
-										<label class="form-label mb-1 text-2">Email Address</label>
-										<input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control text-3 h-auto py-2" name="email" required>
-									</div>
-								</div>
-								<div class="row">
-									<div class="form-group col">
-										<label class="form-label mb-1 text-2">Subject</label>
-										<input type="text" value="" data-msg-required="Please enter the subject." maxlength="100" class="form-control text-3 h-auto py-2" name="subject" required>
-									</div>
-								</div>
-								<div class="row">
-									<div class="form-group col">
-										<label class="form-label mb-1 text-2">Message</label>
-										<textarea maxlength="5000" data-msg-required="Please enter your message." rows="8" class="form-control text-3 h-auto py-2" name="message" required></textarea>
-									</div>
-								</div>
-								<div class="row">
-									<div class="form-group col">
-										<input type="submit" value="Send Message" class="btn btn-primary btn-modern" data-loading-text="Loading...">
-									</div>
-								</div>
-							</form>
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <label class="form-label mb-1 text-2">Full Name</label>
+                                <input type="text" value="" data-msg-required="Please enter your name." maxlength="100"
+                                    class="form-control text-3 h-auto py-2" name="name" required>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label class="form-label mb-1 text-2">Email Address</label>
+                                <input type="email" value="" data-msg-required="Please enter your email address."
+                                    data-msg-email="Please enter a valid email address." maxlength="100"
+                                    class="form-control text-3 h-auto py-2" name="email" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col">
+                                <label class="form-label mb-1 text-2">Subject</label>
+                                <input type="text" value="" data-msg-required="Please enter the subject."
+                                    maxlength="100" class="form-control text-3 h-auto py-2" name="subject" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col">
+                                <label class="form-label mb-1 text-2">Message</label>
+                                <textarea maxlength="5000" data-msg-required="Please enter your message." rows="8"
+                                    class="form-control text-3 h-auto py-2" name="message" required></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col">
+                                <input type="submit" value="Send Message" class="btn btn-primary btn-modern"
+                                    data-loading-text="Loading...">
+                            </div>
+                        </div>
+                    </form>
 
-						</div>
-						<div class="col-lg-6">
+                </div>
+                <div class="col-lg-6">
 
-							<div class="appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="800">
-								<h4 class="mt-2 mb-1">Our <strong>Office</strong></h4>
-								<ul class="list list-icons list-icons-style-2 mt-2">
-									<li><i class="fas fa-map-marker-alt top-6"></i> <strong class="text-dark">Address:</strong> Bangalore</li>
-									<li><i class="fas fa-phone top-6"></i> <strong class="text-dark">Phone:</strong> +91-9035761122</li>
-									<li><i class="fas fa-envelope top-6"></i> <strong class="text-dark">Email:</strong> <a href="mailto:mail@example.com">info@medhatech.in</a></li>
-								</ul>
-							</div>
+                    <div class="appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="800">
+                        <h4 class="mt-2 mb-1">Our <strong>Office</strong></h4>
+                        <ul class="list list-icons list-icons-style-2 mt-2">
+                            <li><i class="fas fa-map-marker-alt top-6"></i> <strong class="text-dark">Address:</strong>
+                                Bangalore</li>
+                            <li><i class="fas fa-phone top-6"></i> <strong class="text-dark">Phone:</strong>
+                                +91-9035761122</li>
+                            <li><i class="fas fa-envelope top-6"></i> <strong class="text-dark">Email:</strong> <a
+                                    href="mailto:mail@example.com">info@medhatech.in</a></li>
+                        </ul>
+                    </div>
 
-							<div class="appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="950">
-								<h4 class="pt-5">Business <strong>Hours</strong></h4>
-								<ul class="list list-icons list-dark mt-2">
-									<li><i class="far fa-clock top-6"></i> Monday - Friday - 9am to 6pm</li>
-									<li><i class="far fa-clock top-6"></i> Saturday - 9am to 6pm</li>
-									<li><i class="far fa-clock top-6"></i> Sunday - Closed</li>
-								</ul>
-							</div>
+                    <div class="appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="950">
+                        <h4 class="pt-5">Business <strong>Hours</strong></h4>
+                        <ul class="list list-icons list-dark mt-2">
+                            <li><i class="far fa-clock top-6"></i> Monday - Friday - 9am to 6pm</li>
+                            <li><i class="far fa-clock top-6"></i> Saturday - 9am to 6pm</li>
+                            <li><i class="far fa-clock top-6"></i> Sunday - Closed</li>
+                        </ul>
+                    </div>
 
-							<h4 class="pt-5">Get in <strong>Touch</strong></h4>
-							<p class="lead mb-0 text-4">Have a question about Mira Chatbot? Whether you're looking to integrate AI into your institution, request a demo, or need support, we're here to help. Our team is ready to assist with product details, customization options, and deployment guidance tailored to your needs.</p>
+                    <h4 class="pt-5">Get in <strong>Touch</strong></h4>
+                    <p class="lead mb-0 text-4">Have a question about Mira Chatbot? Whether you're looking to integrate
+                        AI into your institution, request a demo, or need support, we're here to help. Our team is ready
+                        to assist with product details, customization options, and deployment guidance tailored to your
+                        needs.</p>
 
-						</div>
+                </div>
 
-					</div>
+            </div>
 
-				</div>
+        </div>
     </section>
 
     <section class="section bg-primary border-0 m-0">
