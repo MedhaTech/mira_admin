@@ -176,7 +176,7 @@
     </section>
 
 
-    <section id="mira" class="section bg-color-light border-0 py-5 m-0">
+    <section id="mira" class="section bg-color border-0 py-5 m-0">
     <div class="container">
         <div class="row align-items-center">
             <!-- Left Column -->
@@ -233,6 +233,64 @@
         </div>
     </div>
 </section>
+
+ <section id="vendor-admin-panel" class="section bg-color-light border-0 py-5">
+    <div class="container">
+        <!-- Header -->
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-8">
+                <h2 class="font-weight-bold mb-3">
+                    <span style="font-size: 1.5em;">🛠️</span> Vendor Admin Panel
+                </h2>
+                <p class="text-4">
+                    Everything vendors need to manage, monitor, and improve their chatbots—right at their fingertips.
+                </p>
+            </div>
+        </div>
+
+        <div class="row align-items-center">
+            <!-- Features Column -->
+            <div class="col-lg-7">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="p-4 bg-white shadow-sm rounded h-100">
+                            <div class="mb-3" style="font-size: 2em;">📩</div>
+                            <h5 class="mb-2">View Support Queries</h5>
+                            <p class="mb-0 text-muted">
+                                See a complete list of queries raised by end users for quick action.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-4 bg-white shadow-sm rounded h-100">
+                            <div class="mb-3" style="font-size: 2em;">✏️</div>
+                            <h5 class="mb-2">Edit Anytime</h5>
+                            <p class="mb-0 text-muted">
+                                Update bot name, logo, colors, and knowledge base on the fly.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="p-4 bg-white shadow-sm rounded h-100">
+                            <div class="mb-3" style="font-size: 2em;">📊</div>
+                            <h5 class="mb-2">Advanced Reports</h5>
+                            <p class="mb-0 text-muted">
+                                Access daily and weekly activity summaries, top 5 most asked questions, and detailed statistics to improve responses and support efficiency.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Column -->
+            <div class="col-lg-5 text-center mt-4 mt-lg-0">
+                <img src="img/vendor_dash.png" alt="Vendor Panel Dashboard" class="img-fluid mb-4" style="max-width: 90%;">
+                <a href="#" class="btn btn-primary btn-lg">Explore the Vendor Panel</a>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 
     <section id="clients" class="section  section-height-0  border-0 m-0">
