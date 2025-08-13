@@ -11,7 +11,7 @@
                         <h2 class="text-color-light font-weight-extra-bold text-12 mb-4 appear-animation"
                             data-appear-animation="blurIn" data-appear-animation-delay="500"
                             data-plugin-options="{'firstLoadNoAnim': true, 'minWindowWidth': 0}">
-                            Experience <span class="position-relative">AI Chatbot 
+                            Create. Customize. Scale.<span class="position-relative">
                                 <!-- <span class="position-absolute left-50pct transform3dx-n50 bottom-0">
                             <img src="img/slides/slide-blue-line-big.png" class="w-auto appear-animation"
                                  data-appear-animation="fadeInLeftShorterPlus"
@@ -42,8 +42,8 @@
 					<div class="row justify-content-center pt-3 mt-3">
 						<div class="col-lg-9 text-center">
 							<div class="appear-animation" data-appear-animation="fadeInUpShorter">
-								<h2 class="font-weight-bold mb-2">How Chatbot Works</h2>
-								<p class="mb-4">Mira Chatbot functions as an intelligent virtual assistant that uses AI and Natural Language Processing (NLP) to understand and respond to user queries in real time. When a user interacts with Mira—whether through text or voice—the chatbot analyzes the input, detects intent, and generates context-aware responses.</p>
+								<h2 class="font-weight-bold mb-2">How Mira Chatbot Works</h2>
+								<p class="mb-4">Mira makes AI assistance effortless—turning questions into instant, intelligent answers.</p>
 							</div>
 								</div>
 					</div>
@@ -56,8 +56,17 @@
 								<div class="featured-box featured-box-primary featured-box-effect-2">
 									<div class="box-content box-content-border-bottom">
 										<i class="icon-featured far fa-heart"></i>
-										<h4 class="font-weight-normal text-5 mt-3"> <strong class="font-weight-extra-bold">Ask a Question</strong></h4>
-										<br><p class="mb-2 mt-2 text-2">Donec id elit non mi porta gravida at eget metus. Fusce dapibus.</p>
+										<h4 class="font-weight-normal text-5 mt-3"> <strong class="font-weight-extra-bold">Type Your Question</strong></h4>
+										<br><p class="mb-2 mt-2 text-2">Simply enter what you need to know.</p>
+									</div>
+								</div>
+							</div>
+                            <div class="col-lg-3 col-sm-6">
+								<div class="featured-box featured-box-quaternary featured-box-effect-2">
+									<div class="box-content box-content-border-bottom">
+										<i class="icon-featured far fa-edit"></i>
+										<h4 class="font-weight-normal text-5 mt-3"> <strong class="font-weight-extra-bold"> AI Understands You</strong></h4>
+										<br><p class="mb-2 mt-2 text-2">Mira analyzes your words, detects intent, and finds the best answer. </p>
 									</div>
 								</div>
 							</div>
@@ -65,8 +74,8 @@
 								<div class="featured-box featured-box-secondary featured-box-effect-2">
 									<div class="box-content box-content-border-bottom">
 										<i class="icon-featured far fa-file-alt"></i>
-										<h4 class="font-weight-normal text-5 mt-3"> <strong class="font-weight-extra-bold">AI Responds Instantly</strong></h4>
-										<p class="mb-2 mt-2 text-2">Donec id elit non mi porta gravida at eget metus. Fusce dapibus.</p>
+										<h4 class="font-weight-normal text-5 mt-3"> <strong class="font-weight-extra-bold">Get Smart Suggestions</strong></h4>
+										<br><p class="mb-2 mt-2 text-2">Receive helpful insights, resources, or next steps.</p>
 									</div>
 								</div>
 							</div>
@@ -74,17 +83,8 @@
 								<div class="featured-box featured-box-tertiary featured-box-effect-2">
 									<div class="box-content box-content-border-bottom">
 										<i class="icon-featured far fa-star"></i>
-										<h4 class="font-weight-normal text-5 mt-3"><strong class="font-weight-extra-bold">Learning Path Suggestions</strong></h4>
-										<p class="mb-2 mt-2 text-2">Donec id elit non mi porta gravida at eget metus. Fusce dapibus.</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-sm-6">
-								<div class="featured-box featured-box-quaternary featured-box-effect-2">
-									<div class="box-content box-content-border-bottom">
-										<i class="icon-featured far fa-edit"></i>
-										<h4 class="font-weight-normal text-5 mt-3"> <strong class="font-weight-extra-bold">Admin & Teacher Tools</strong></h4>
-										<p class="mb-2 mt-2 text-2">Donec id elit non mi porta gravida at eget metus. Fusce dapibus. </p>
+										<h4 class="font-weight-normal text-5 mt-3"><strong class="font-weight-extra-bold">Empower Admins</strong></h4>
+										<br><p class="mb-2 mt-2 text-2">Access dashboards, analytics, and tools to track and improve engagement.</p>
 									</div>
 								</div>
 							</div>
@@ -145,6 +145,75 @@
         </div>
     </section>
 
+
+    <div id="offers" class="container">
+					<div class="row justify-content-center pt-3 mt-3">
+						<div class="col-lg-9 text-center">
+							<div class="appear-animation" data-appear-animation="fadeInUpShorter">
+								<h2 class="font-weight-bold mb-2">Mira - What we offer our clients</h2>
+								<p class="mb-4">Your all-in-one AI chatbot platform to create, customize, and manage multiple bots for your business, website, or personal use.Powerful, scalable, and beautifully simple.</p>
+							</div>
+								</div>
+					</div>
+					<div class="row pb-3 mb-3">
+						<div class="col">
+
+							<div class="featured-boxes featured-boxes-flat">
+						<div class="row">
+							<div class="col-lg-3 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
+							
+
+							<div class="card border-0 bg-color-grey">
+								<div class="card-body">
+									<i class="fa-solid fa-robot text-color-primary text-8"></i>
+									<h4 class="card-title mt-2 mb-1 text-4 font-weight-bold">Multi-Bot Management</h4>
+									<p class="card-text">Easily create and manage unlimited chatbots—each with its own name, colors, logo, and dedicated knowledge base.</p>
+								</div>
+							</div>
+
+						</div>
+                            <div class="col-lg-3 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
+							
+
+							<div class="card border-0 bg-color-grey">
+								<div class="card-body">
+									<i class="fa-solid fa-palette text-color-primary text-8"></i>
+									<h4 class="card-title mt-2 mb-1 text-4 font-weight-bold">Easy Customization</h4>
+									<p class="card-text">Personalize every bot with your branding, custom color schemes, and unique conversational styles.</p>
+								</div>
+							</div>
+
+						</div>
+							<div class="col-lg-3 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
+							
+
+							<div class="card border-0 bg-color-grey">
+								<div class="card-body">
+									<i class="fas fa-bolt text-color-primary text-8"></i>
+									<h4 class="card-title mt-2 mb-1 text-4 font-weight-bold">Fast & Scalable</h4>
+									<p class="card-text">Engineered for performance and growth. Add more bots or users anytime—no restrictions.<br><br></p>
+								</div>
+							</div>
+
+						</div>
+						<div class="col-lg-3 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
+							
+
+							<div class="card border-0 bg-color-grey">
+								<div class="card-body">
+									<i class="fas fa-lock text-color-primary text-8"></i>
+									<h4 class="card-title mt-2 mb-1 text-4 font-weight-bold">Secure & Private</h4>
+									<p class="card-text">Your data stays safe and under your control. Only you can access and manage your bots and their knowledge bases.</p>
+								</div>
+							</div>
+
+						</div>
+						</div>
+					</div>
+
+						</div>
+					</div>
+				</div>
 
     <section id="clients"
         class="section  section-height-0  border-0 m-0">
