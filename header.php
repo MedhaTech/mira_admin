@@ -86,6 +86,9 @@
 														<a class="nav-link" data-hash data-hash-offset="0" data-hash-offset-lg="68" href="#mira">Mira</a>
 													</li>
 													<li>
+														<a class="nav-link" data-hash data-hash-offset="0" data-hash-offset-lg="68" href="#vendor-admin-panel">Vendor</a>
+													</li>
+													<li>
 														<a class="nav-link" data-hash data-hash-offset="0" data-hash-offset-lg="68" href="#clients">Demo video</a>
 													</li>
 													<li>
